@@ -350,32 +350,3 @@ void costume_DNA(Helix helix, int target, vec3 size, float direction, Costume co
   costume(pos_b, size, angle_b,costume) ;
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

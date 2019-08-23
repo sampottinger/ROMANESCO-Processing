@@ -13,7 +13,9 @@ SOUNDA Rope
 * @see https://github.com/ddf/Minim
 */
 
-
+// library stuff
+import ddf.minim.*;
+import ddf.minim.analysis.*;
 
 /**
 Class Sounda
@@ -23,9 +25,6 @@ public class Sounda implements rope.core.R_Constants {
   boolean info = false;
   private int analyze_length;
   Section section[];
-  // library stuff
-  import ddf.minim.*;
-  import ddf.minim.analysis.*;
   Minim minim;
   AudioInput input;
   AudioBuffer source_buffer;
@@ -1675,6 +1674,3 @@ class Transient extends Sounda {
     return section[section_target].get_threshold_transient();
   }
 }
-
-
-

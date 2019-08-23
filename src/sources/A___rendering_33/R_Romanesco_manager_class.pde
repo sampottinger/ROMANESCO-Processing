@@ -13,7 +13,7 @@ class Romanesco_manager {
   private ArrayList<Romanesco>romanesco_item_list;
   private ArrayList<Class>item_list;
 
-  private Table index_item;
+  private processing.data.Table index_item;
   private TableRow [] row_index_item;
 
   PApplet parent;
@@ -67,7 +67,7 @@ class Romanesco_manager {
 
   //create the index
   void create_index(int num) {
-    index_item = new Table() ;
+    index_item = new processing.data.Table() ;
     index_item.addColumn("Library Order");
     index_item.addColumn("Name");
     index_item.addColumn("ID");
@@ -214,7 +214,7 @@ class Romanesco_manager {
 
 
   public void set_item(String path) {
-    Table slider_item_data = loadTable(path,"header");
+    processing.data.Table slider_item_data = loadTable(path,"header");
     String [][] slider_name = new String[4][16];
     for(int i = 0 ; i < slider_item_data.getRowCount() ;i++) {
       TableRow row = slider_item_data.getRow(i);
@@ -441,4 +441,3 @@ class Romanesco_manager {
     }
   }
 }
-

@@ -385,7 +385,7 @@ void update_fx_bg_voronoi_hex(ArrayList<FX> fx_list, boolean move_is, vec3 colou
 
 // info to gui
 void write_fx_backgound_index(ArrayList<FX> fx_list) {
-  Table index_fx_bg = new Table();
+  processing.data.Table index_fx_bg = new processing.data.Table();
   index_fx_bg.addColumn("Name");
   index_fx_bg.addColumn("Author");
   index_fx_bg.addColumn("Version");
@@ -537,7 +537,3 @@ vec4 update_background() {
   alpha = map(alpha,0,1,.8,HSBmode.alp());
   return vec4(hue_bg,saturation_bg,brigthness_bg,alpha) ;
 }
-
-
-
-

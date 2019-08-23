@@ -1993,18 +1993,3 @@ public class Force_field implements rope.core.R_Constants, rope.core.R_Constants
 /**
 END class Force_field
 */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,12 +1,12 @@
 /**
-TABLE METHOD 
+TABLE METHOD
 v 0.0.3.1
 for Table with the first COLLUMN is used for name and the next 6 for the value.
 The method is used with the Class Info
 
 */
 // table method for row sort
-void buildTable(Table table, TableRow [] tableRow, String [] col_name, String [] row_name) {
+void buildTable(processing.data.Table table, TableRow [] tableRow, String [] col_name, String [] row_name) {
   // add col
   for(int i = 0 ; i < col_name.length ; i++) {
     table.addColumn(col_name[i]);
@@ -16,22 +16,22 @@ void buildTable(Table table, TableRow [] tableRow, String [] col_name, String []
   buildRow(table, row_name) ;
 }
 
-void buildTable(Table table, String [] col_name) {
+void buildTable(processing.data.Table table, String [] col_name) {
   // add col
   for(int i = 0 ; i < col_name.length ; i++) {
     table.addColumn(col_name[i]);
   }
 }
 
-void buildRow(Table table, String [] row_name) {
+void buildRow(processing.data.Table table, String [] row_name) {
   int num_row = table.getRowCount() ;
   for(int i = 0 ; i < num_row ; i++) {
     TableRow row = table.getRow(i) ;
-    row.setString(table.getColumnTitle(0), row_name[i]) ; 
+    row.setString(table.getColumnTitle(0), row_name[i]) ;
   }
 }
 
-void setTable(Table table, TableRow [] rows, Info_Object... info) {
+void setTable(processing.data.Table table, TableRow [] rows, Info_Object... info) {
   for(int i = 0 ; i < rows.length ; i++) {
     if(rows[i] != null) {
       for(int j = 0 ; j < info.length ; j++) {
@@ -40,14 +40,14 @@ void setTable(Table table, TableRow [] rows, Info_Object... info) {
             if(table.getColumnCount() > k && info[j].catch_obj(k-1) != null)  write_row(rows[i], table.getColumnTitle(k), info[j].catch_obj(k-1)) ;
           }
         }
-        
+
       }
     }
   }
 }
 
 
-void setRow(Table table, Info_Object info) {
+void setRow(processing.data.Table table, Info_Object info) {
   TableRow result = table.findRow(info.get_name(), table.getColumnTitle(0)) ;
   if(result != null) {
     for(int k = 1 ; k < 7 ; k++) {
@@ -77,10 +77,10 @@ void write_row(TableRow row, String col_name, Object o) {
     boolean b = (Boolean) o ;
     String s = Boolean.toString(b) ;
     row.setString(col_name, s);
-  } 
+  }
 }
 /**
-Info_dict 
+Info_dict
 v 0.3.0.1
 */
 public class Info_dict {
@@ -137,26 +137,26 @@ public class Info_dict {
       if(a instanceof Info_Object) {
         Info_Object obj = (Info_Object)a ;
         if(obj.a != null && obj.b == null && obj.c == null && obj.d == null && obj.e == null && obj.f == null && obj.g == null) {
-          println(a,get_type(obj.a));   
+          println(a,get_type(obj.a));
         }
         if(obj.a != null && obj.b != null && obj.c == null && obj.d == null && obj.e == null && obj.f == null && obj.g == null) {
-          println(a,get_type(obj.a),get_type(obj.b));   
+          println(a,get_type(obj.a),get_type(obj.b));
         }
         if(obj.a != null && obj.b != null && obj.c != null && obj.d == null && obj.e == null && obj.f == null && obj.g == null) {
-          println(a,get_type(obj.a),get_type(obj.b),get_type(obj.c));   
+          println(a,get_type(obj.a),get_type(obj.b),get_type(obj.c));
         }
         if(obj.a != null && obj.b != null && obj.c != null && obj.d != null && obj.e == null && obj.f == null && obj.g == null) {
-          println(a,get_type(obj.a),get_type(obj.b),get_type(obj.c),get_type(obj.d));   
+          println(a,get_type(obj.a),get_type(obj.b),get_type(obj.c),get_type(obj.d));
         }
         if(obj.a != null && obj.b != null && obj.c != null && obj.d != null && obj.e != null && obj.f == null && obj.g == null) {
-          println(a,get_type(obj.a),get_type(obj.b),get_type(obj.c),get_type(obj.d),get_type(obj.e));   
+          println(a,get_type(obj.a),get_type(obj.b),get_type(obj.c),get_type(obj.d),get_type(obj.e));
         }
         if(obj.a != null && obj.b != null && obj.c != null && obj.d != null && obj.e != null && obj.f != null && obj.g == null) {
-          println(a,get_type(obj.a),get_type(obj.b),get_type(obj.c),get_type(obj.d),get_type(obj.e),get_type(obj.f));   
+          println(a,get_type(obj.a),get_type(obj.b),get_type(obj.c),get_type(obj.d),get_type(obj.e),get_type(obj.f));
         }
         if(obj.a != null && obj.b != null && obj.c != null && obj.d != null && obj.e != null && obj.f != null && obj.g != null) {
-          println(a,get_type(obj.a),get_type(obj.b),get_type(obj.c),get_type(obj.d),get_type(obj.e),get_type(obj.f),get_type(obj.g));   
-        }      
+          println(a,get_type(obj.a),get_type(obj.b),get_type(obj.c),get_type(obj.d),get_type(obj.e),get_type(obj.f),get_type(obj.g));
+        }
       }
     }
   }
@@ -167,7 +167,7 @@ public class Info_dict {
       return list.get(target);
     } else return null;
   }
-  
+
   Info [] get(String which) {
     Info [] info;
     int count = 0;
@@ -206,7 +206,7 @@ public class Info_dict {
       }
     }
   }
-  
+
   void remove(int target) {
    if(target < list.size()) {
       list.remove(target);
@@ -231,24 +231,24 @@ public class Info_int_dict extends Info_dict {
   void add(String name, int a) {
     Info_int info = new Info_int(name,a);
     list_int.add(info);
-  } 
+  }
   void add(String name, int a, int b) {
     Info_int info = new Info_int(name,a,b);
     list_int.add(info);
-  } 
+  }
 
   void add(String name, int a, int b, int c) {
     Info_int info = new Info_int(name,a,b,c);
     list_int.add(info);
-  } 
+  }
   void add(String name, int a, int b, int c, int d) {
     Info_int info = new Info_int(name, a,b,c,d);
     list_int.add(info);
-  } 
+  }
   void add(String name, int a, int b, int c, int d, int e) {
     Info_int info = new Info_int(name,a,b,c,d,e);
     list_int.add(info);
-  } 
+  }
   void add(String name, int a, int b, int c, int d, int e, int f) {
     Info_int info = new Info_int(name,a,b,c,d,e,f);
     list_int.add(info);
@@ -271,7 +271,7 @@ public class Info_int_dict extends Info_dict {
       println(a,"Integer");
     }
   }
-  
+
 
   // get
   Info_int get(int target) {
@@ -279,7 +279,7 @@ public class Info_int_dict extends Info_dict {
       return list_int.get(target);
     } else return null;
   }
-  
+
   Info_int [] get(String which) {
     Info_int [] info  ;
     int count = 0;
@@ -318,7 +318,7 @@ public class Info_int_dict extends Info_dict {
       }
     }
   }
-  
+
   void remove(int target) {
    if(target < list_int.size()) {
       list_int.remove(target);
@@ -379,7 +379,7 @@ public class Info_float_dict extends Info_dict {
       println(a,"Float");
     }
   }
-   
+
 
   // get
   Info_float get(int target) {
@@ -387,7 +387,7 @@ public class Info_float_dict extends Info_dict {
       return list_float.get(target);
     } else return null;
   }
-  
+
   Info_float [] get(String which) {
     Info_float [] info;
     int count = 0;
@@ -426,7 +426,7 @@ public class Info_float_dict extends Info_dict {
       }
     }
   }
-  
+
   void remove(int target) {
    if(target < list_float.size()) {
       list_float.remove(target);
@@ -453,7 +453,7 @@ public class Info_String_dict extends Info_dict {
     list_String.add(info);
   }
   void add(String name, String a, String b) {
-    Info_String info = new Info_String(name,a,b); 
+    Info_String info = new Info_String(name,a,b);
     list_String.add(info);
   }
   void add(String name, String a, String b, String c) {
@@ -489,7 +489,7 @@ public class Info_String_dict extends Info_dict {
       println(a,"String");
     }
   }
-  
+
 
   // get
   Info_String get(int target) {
@@ -497,7 +497,7 @@ public class Info_String_dict extends Info_dict {
       return list_String.get(target);
     } else return null;
   }
-  
+
   Info_String [] get(String which) {
     Info_String [] info  ;
     int count = 0 ;
@@ -536,7 +536,7 @@ public class Info_String_dict extends Info_dict {
       }
     }
   }
-  
+
   void remove(int target) {
    if(target < list_String.size()) {
       list_String.remove(target);
@@ -597,7 +597,7 @@ public class Info_vec_dict extends Info_dict {
       println(a,"vec");
     }
   }
-  
+
 
   // get
   Info_vec get(int target) {
@@ -605,7 +605,7 @@ public class Info_vec_dict extends Info_dict {
       return list_vec.get(target);
     } else return null;
   }
-  
+
   Info_vec [] get(String which) {
     Info_vec [] info;
     int count = 0 ;
@@ -644,7 +644,7 @@ public class Info_vec_dict extends Info_dict {
       }
     }
   }
-  
+
   void remove(int target) {
    if(target < list_vec.size()) {
       list_vec.remove(target);
@@ -666,7 +666,7 @@ interface Info {
 
   char get_type();
 }
- 
+
 abstract class Info_method implements Info {
   String name  ;
   // error message
@@ -677,7 +677,7 @@ abstract class Info_method implements Info {
   }
 
 
-  String get_name() { 
+  String get_name() {
     return name ;
   }
 }
@@ -690,7 +690,7 @@ INFO int
 class Info_int extends Info_method {
   char type = 'i' ;
   int a, b, c, d, e, f, g ;
-  int num_value ;  
+  int num_value ;
 
 
   Info_int(String name) {
@@ -700,7 +700,7 @@ class Info_int extends Info_method {
   Info_int(String name, int... var) {
     super(name) ;
     if(var.length > 7 ) {
-      num_value = 7 ; 
+      num_value = 7 ;
     } else {
       num_value = var.length ;
     }
@@ -722,7 +722,7 @@ class Info_int extends Info_method {
 
   int get(int which) {
     if(which == 0) {
-      return a ; 
+      return a ;
     } else if(which == 1) {
       return b ;
     } else if(which == 2) {
@@ -738,9 +738,9 @@ class Info_int extends Info_method {
     } else {
       System.err.println(error_target) ;
       return 0 ;
-    } 
+    }
   }
-  
+
   Object [] catch_all() {
     Object [] list = new Object[]{a,b,c,d,e,f,g} ;
     return list ;
@@ -748,7 +748,7 @@ class Info_int extends Info_method {
 
   Object catch_obj(int which) {
     if(which == 0) {
-      return a ; 
+      return a ;
     } else if(which == 1) {
       return b ;
     } else if(which == 2) {
@@ -764,9 +764,9 @@ class Info_int extends Info_method {
     } else {
       System.err.println(error_target) ;
       return null ;
-    } 
+    }
   }
-  
+
   char get_type() { return type ; }
 
   // Print info
@@ -799,7 +799,7 @@ INFO String
 class Info_String extends Info_method {
   char type = 's' ;
   String a, b, c, d, e, f, g ;
-  int num_value ;  
+  int num_value ;
 
   Info_String(String name) {
     super(name) ;
@@ -808,7 +808,7 @@ class Info_String extends Info_method {
   Info_String(String name, String... var) {
     super(name) ;
     if(var.length > 7 ) {
-      num_value = 7 ; 
+      num_value = 7 ;
     } else {
       num_value = var.length ;
     }
@@ -830,7 +830,7 @@ class Info_String extends Info_method {
 
   String get(int which) {
     if(which == 0) {
-      return a ; 
+      return a ;
     } else if(which == 1) {
       return b ;
     } else if(which == 2) {
@@ -848,7 +848,7 @@ class Info_String extends Info_method {
       return null ;
     }
   }
-  
+
   Object [] catch_all() {
     Object [] list = new Object[]{a,b,c,d,e,f,g} ;
     return list ;
@@ -856,7 +856,7 @@ class Info_String extends Info_method {
 
   Object catch_obj(int which) {
     if(which == 0) {
-      return a ; 
+      return a ;
     } else if(which == 1) {
       return b ;
     } else if(which == 2) {
@@ -908,7 +908,7 @@ INFO float
 class Info_float extends Info_method {
   char type = 'f' ;
   float a, b, c, d, e, f, g ;
-  int num_value ; 
+  int num_value ;
 
   Info_float(String name) {
     super(name) ;
@@ -917,7 +917,7 @@ class Info_float extends Info_method {
   Info_float(String name, float... var) {
     super(name) ;
     if(var.length > 7 ) {
-      num_value = 7 ; 
+      num_value = 7 ;
     } else {
       num_value = var.length ;
     }
@@ -938,7 +938,7 @@ class Info_float extends Info_method {
 
   float get(int which) {
     if(which == 0) {
-      return a ; 
+      return a ;
     } else if(which == 1) {
       return b ;
     } else if(which == 2) {
@@ -956,7 +956,7 @@ class Info_float extends Info_method {
       return 0.0 ;
     }
   }
-  
+
   Object [] catch_all() {
     Object [] list = new Object[]{a,b,c,d,e,f,g} ;
     return list ;
@@ -964,7 +964,7 @@ class Info_float extends Info_method {
 
   Object catch_obj(int which) {
     if(which == 0) {
-      return a ; 
+      return a ;
     } else if(which == 1) {
       return b ;
     } else if(which == 2) {
@@ -984,7 +984,7 @@ class Info_float extends Info_method {
   }
 
   char get_type() { return type ; }
-  
+
   // Print info
   @Override String toString() {
     if(num_value == 1) {
@@ -1016,7 +1016,7 @@ v 0.0.2
 class Info_vec extends Info_method {
   char type = 'v' ;
   vec a, b, c, d, e, f, g ;
-  int num_value ;  
+  int num_value ;
 
   Info_vec(String name) {
     super(name) ;
@@ -1026,7 +1026,7 @@ class Info_vec extends Info_method {
   Info_vec(String name, vec... var) {
     super(name) ;
     if(var.length > 7 ) {
-      num_value = 7 ; 
+      num_value = 7 ;
     } else {
       num_value = var.length ;
     }
@@ -1050,7 +1050,7 @@ class Info_vec extends Info_method {
 
   vec get(int which) {
     if(which == 0) {
-      return a ; 
+      return a ;
     } else if(which == 1) {
       return b ;
     } else if(which == 2) {
@@ -1068,7 +1068,7 @@ class Info_vec extends Info_method {
       return null;
     }
   }
-  
+
   Object [] catch_all() {
     Object [] list = new Object[]{a,b,c,d,e,f,g} ;
     return list ;
@@ -1076,7 +1076,7 @@ class Info_vec extends Info_method {
 
   Object catch_obj(int which) {
     if(which == 0) {
-      return a ; 
+      return a ;
     } else if(which == 1) {
       return b ;
     } else if(which == 2) {
@@ -1142,7 +1142,7 @@ class Info_Object extends Info_method {
   Info_Object(String name, Object... var) {
     super(name) ;
     if(var.length > 7 ) {
-      num_value = 7 ; 
+      num_value = 7 ;
     } else {
       num_value = var.length ;
     }
@@ -1164,7 +1164,7 @@ class Info_Object extends Info_method {
 
   Object get(int which) {
     if(which == 0) {
-      return a ; 
+      return a ;
     } else if(which == 1) {
       return b ;
     } else if(which == 2) {
@@ -1182,7 +1182,7 @@ class Info_Object extends Info_method {
       return null ;
     }
   }
-  
+
   Object [] catch_all() {
     Object [] list = new Object[]{a,b,c,d,e,f,g} ;
     return list ;
@@ -1190,7 +1190,7 @@ class Info_Object extends Info_method {
 
   Object catch_obj(int which) {
     if(which == 0) {
-      return a ; 
+      return a ;
     } else if(which == 1) {
       return b ;
     } else if(which == 2) {
@@ -1208,7 +1208,7 @@ class Info_Object extends Info_method {
       return null ;
     }
   }
-  
+
   char get_type() { return type ; }
 
 

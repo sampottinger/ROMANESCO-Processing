@@ -353,13 +353,3 @@ void light_value_dev() {
   on_off_light_action[1] = true ;
   on_off_light_action[2] = true ;
 }
-
-
-
-
-
-
-
-
-
-

@@ -305,9 +305,3 @@ vec3 get_spot_pos(int index) {
     return null;
   }
 }
-
-
-
-
-
-

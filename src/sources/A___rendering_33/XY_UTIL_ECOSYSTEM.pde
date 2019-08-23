@@ -1,5 +1,5 @@
 /**
-* ECOSYSTEM UTIL 
+* ECOSYSTEM UTIL
 * v 1.1.2
 * 2015-2019
 * Processing 3.5.3
@@ -184,7 +184,7 @@ void update_symbiosis_area(vec3 [] target_host_list) {
       symbiosis_area[i].y = pos.y ;
       symbiosis_area[i].z = pos.z ;
     }
-  }  
+  }
 }
 
 /**
@@ -200,7 +200,7 @@ void symbiosis(ArrayList<Agent> symbiotic_agent_list, vec3 [] list_coord_host, i
       a.set_home(list_coord_host[address[where]], address[where]) ;
       a.set_pos(a.get_home_pos()) ;
     }
-  } 
+  }
 }
 
 
@@ -268,7 +268,7 @@ int SIZE_TEXT_INFO ;
 
 void set_renderer(String renderer) {
   if(renderer.equals(P3D)) {
-    ENVIRONMENT = 3 ; 
+    ENVIRONMENT = 3 ;
   } else {
     ENVIRONMENT = 2 ;
   }
@@ -351,7 +351,7 @@ class Biomass {
   void set_humus(float humus) {
     this.humus = this.humus_max = humus ;
   }
-} 
+}
 
 
 
@@ -388,7 +388,7 @@ void picking_update(ArrayList<Agent> list_picker, ArrayList<Agent> list_target) 
       Agent_dynamic picker = (Agent_dynamic) a ;
       if(!picker.satiate) {
         search_flora(picker, list_target) ;
-      } 
+      }
       eat_flora(picker, list_target) ;
     }
   }
@@ -399,7 +399,7 @@ void hunting_update(ArrayList<Agent> list_hunter, boolean info, ArrayList<Agent>
     for(Agent a : list_hunter) {
       if(a instanceof Agent_dynamic) {
         Agent_dynamic hunter = (Agent_dynamic) a ;
-        if(!hunter.satiate && !hunter.eating) hunt(hunter, list_target) ;   
+        if(!hunter.satiate && !hunter.eating) hunt(hunter, list_target) ;
       }
     }
   }
@@ -411,7 +411,7 @@ void eating_update(ArrayList<Agent> list_hunter, ArrayList<Dead> list_dead) {
       Agent_dynamic hunter = (Agent_dynamic) a ;
       // eat
       if(list_dead.size() >= 0 ) {
-        eat_meat(hunter, list_dead) ; 
+        eat_meat(hunter, list_dead) ;
       } else {
         hunter.eating = false ;
       }
@@ -435,7 +435,7 @@ void search_flora(Agent_dynamic grazer, ArrayList<Agent> list_target) {
       int ID_target = (int)grazer.ID_target.y ;
       Agent target = list_target.get(which_target) ;
       grazer.track(grazer.target) ;
-    } 
+    }
   } else {
     grazer.track_stop() ;
     int entry = floor(random(list_target.size())) ;
@@ -453,7 +453,7 @@ void search_flora(Agent_dynamic grazer, ArrayList<Agent> list_target) {
         }
       }
     }
-  }  
+  }
 }
 
 
@@ -469,7 +469,7 @@ void hunt(Agent_dynamic hunter, ArrayList<Agent> list_target) {
   if(hunter.watching) find_target_hunter(hunter, list_target) ;
 
   if(hunter.tracking && hunter.max_time_track > hunter.time_track) {
-    hunt_target(hunter, list_target) ; 
+    hunt_target(hunter, list_target) ;
   } else {
     hunter.track_stop() ;
   }
@@ -490,7 +490,7 @@ void hunt_and_kill_target(Agent_dynamic hunter, Agent target) {
   if(target instanceof Agent_dynamic) {
     Agent_dynamic target_d = (Agent_dynamic) target ;
     if(hunter.dist_to_target(target_d) < hunter.sense_range) {
-      hunter.track(target_d) ; 
+      hunter.track(target_d) ;
       hunter.kill(target_d) ;
     } else hunter.track_stop() ;
   }
@@ -502,7 +502,7 @@ Find new target, Big Brother is hunting you !
 void find_target_hunter(Agent_dynamic hunter, ArrayList<Agent> list_target) {
   // float [] dist_list = new float[0] ;
   ArrayList <vec3> closest_target = new ArrayList<vec3>() ;
-  // find the closest target 
+  // find the closest target
   for(Agent a : list_target) {
     if(a instanceof Agent_dynamic) {
       Agent_dynamic target_d = (Agent_dynamic) a ;
@@ -516,7 +516,7 @@ void find_target_hunter(Agent_dynamic hunter, ArrayList<Agent> list_target) {
         closest_target.add(new_target) ;
         // compare the target to see which one is the closest.
         if(closest_target.size() > 1) if (closest_target.get(1).x <= closest_target.get(0).x ) closest_target.remove(0) ; else closest_target.remove(1) ;
-      } 
+      }
     }
   }
 
@@ -577,25 +577,25 @@ void eat_meat(Agent_dynamic hunter, ArrayList<Dead> list_dead) {
   if(hunter.eating) {
     int pointer = (int)hunter.ID_target.x ;
     int ID_target = (int)hunter.ID_target.y ;
-    /* here we point directly in a specific point of the list, 
-    if the pointer is superior of the list, 
+    /* here we point directly in a specific point of the list,
+    if the pointer is superior of the list,
     because if it's inferior a corpse can be eat by an other Agent */
     if(pointer < list_dead.size() ) {
       Dead target = list_dead.get((int)hunter.ID_target.x) ;
-      /* if the entry point of the list return an agent 
-      with a same ID than a ID_target corpse eat just before, 
+      /* if the entry point of the list return an agent
+      with a same ID than a ID_target corpse eat just before,
       the Carnivore can continue the lunch */
       if (target instanceof Agent_static && target.get_ID() == ID_target ) {
         Agent_static agent_meat = (Agent_static) target ;
-        hunter.eat_flesh(agent_meat) ; 
+        hunter.eat_flesh(agent_meat) ;
       }
       else {
-        /* If the ID returned is different, a corpse was leave from the list, 
+        /* If the ID returned is different, a corpse was leave from the list,
         and it's necessary to check in the full ist to find if any corpse have a seme ID */
         for(Dead target_in_list : list_dead) {
           if (target_in_list instanceof Agent_static && target_in_list.get_ID() == ID_target) {
             Agent_static agent_meat = (Agent_static) target_in_list ;
-            hunter.eat_flesh(agent_meat) ; 
+            hunter.eat_flesh(agent_meat) ;
           } else {
             hunter.eating = false ;
           }
@@ -684,7 +684,7 @@ boolean check_male_reproducer(Agent female, ArrayList<Agent> list_target) {
           result = true ;
           // must be create method copy but smell very complexe thing to do
           f.genome_father = m.genome ;
-          break ; 
+          break ;
         } else result = false ;
       } else result = false ;
     }
@@ -718,7 +718,7 @@ boolean check_female_reproducer(Agent female, ArrayList<Agent> list_target_male)
           // float ratio_acceleration_to_see_female = 1.3 ;
           // m.velocity = m.velocity_ref *ratio_acceleration_to_see_female ;
           m.dir.set(target_direction(f.pos, m.pos)) ;
-          result = true ; 
+          result = true ;
         } else {
           result = false ;
           m.tracking_partner = false ;
@@ -770,7 +770,7 @@ void set_baby(Agent_dynamic deliver, Agent baby, ArrayList<Agent> list_child, In
     // Must add this part in the genome for the future,
     if(baby instanceof Carnivore) set_carnivore(n, deliver.pos, carac, style) ;
     if(baby instanceof Herbivore) set_herbivore(n, deliver.pos, carac, style) ;
-    if(baby instanceof Omnivore) set_omnivore(n, deliver.pos, carac, style) ; 
+    if(baby instanceof Omnivore) set_omnivore(n, deliver.pos, carac, style) ;
 
     n.set_ID( (short) Math.round(random(Short.MAX_VALUE))) ;
     list_child.add(n) ;
@@ -812,7 +812,7 @@ Agent [] babies(Agent_dynamic deliver, int num, Genome mother, Genome father) {
 
 
 void num_babies(float ratio_multi) {
-  int max = 100 ;    
+  int max = 100 ;
   float draw = random(max) ;
   // security
   int max_babies = 100 ;
@@ -866,7 +866,7 @@ void manage_child(ArrayList<Agent> list_f, ArrayList<Agent> list_m, ArrayList<Ag
 
 /**
 
-END REPRODUCTION 
+END REPRODUCTION
 AGENT DYNAMIC
 
 */
@@ -917,7 +917,7 @@ SHOW / COSTUME
 void set_costume_agent(int which_costume, ArrayList<Agent>... all_list) {
   for(ArrayList<Agent> list : all_list) {
     for(Agent a : list) {
-      a.set_costume(which_costume) ; 
+      a.set_costume(which_costume) ;
     }
   }
 }
@@ -929,9 +929,9 @@ Info_Object info
 * boolean original = (boolean)info.catch_obj(1) ;
 * int costume_ID = (int)info.catch_obj(2) ;
 * vec4 fill = (vec4)info.catch_obj(3) ;
-* vec4 stroke = (vec4)info.catch_obj(4) ; 
+* vec4 stroke = (vec4)info.catch_obj(4) ;
 * float thickness = (float)info.catch_obj(5) ;
-*/ 
+*/
 void show_agent_dynamic(Info_Object style, ArrayList<Agent>... all_list) {
   for(ArrayList list : all_list) {
     if(INFO_DISPLAY_AGENT) {
@@ -956,8 +956,8 @@ update aspect
 */
 void update_aspect(Info_Object style, ArrayList list) {
   int costume_ID = 0 ;
-  vec4 fill_vec =  vec4(0, 0 , g.colorModeZ, g.colorModeA) ; 
-  vec4 stroke_vec = vec4(g.colorModeX, g.colorModeY, g.colorModeZ, g.colorModeA) ; 
+  vec4 fill_vec =  vec4(0, 0 , g.colorModeZ, g.colorModeA) ;
+  vec4 stroke_vec = vec4(g.colorModeX, g.colorModeY, g.colorModeZ, g.colorModeA) ;
   float thickness = 1 ;
   // float alpha_behavior = (float)style.catch_obj(4) ;
   boolean fill_is = true ;
@@ -965,7 +965,7 @@ void update_aspect(Info_Object style, ArrayList list) {
 
   if(style.catch_obj(0) != null) costume_ID = ((Costume)style.catch_obj(0)).get_type();
   if(style.catch_obj(1) != null) fill_vec = (vec4)style.catch_obj(1);
-  if(style.catch_obj(2) != null) stroke_vec = (vec4)style.catch_obj(2); 
+  if(style.catch_obj(2) != null) stroke_vec = (vec4)style.catch_obj(2);
   if(style.catch_obj(3) != null) thickness = (float)style.catch_obj(3);
   // if(style.catch_obj(4) != null) alpha_behavior = (float)style.catch_obj(4) ;
   if(style.catch_obj(5) != null) fill_is = (boolean)style.catch_obj(5);
@@ -1024,7 +1024,7 @@ void update_aspect(Info_Object style, ArrayList list) {
       }
       a.aspect(fill_def, stroke_def, thickness_def) ;
       if(costume_ID != a.get_costume().get_type()) {
-        a.set_costume(costume_ID) ; 
+        a.set_costume(costume_ID) ;
       } else {
         a.costume() ;
       }
@@ -1057,13 +1057,13 @@ void update_aspect(Info_Object style, ArrayList list) {
         }
 
         if(costume_ID != d.get_costume()) {
-          d.costume(costume_ID) ; 
+          d.costume(costume_ID) ;
         } else {
           d.costume() ;
         }
       }
-    } 
-    */  
+    }
+    */
   }
 }
 
@@ -1138,14 +1138,14 @@ boolean log_is ;
 int SEQUENCE_LOG = 0 ;
 // int col_num = 10 ;
 // log Eco agent
-Table [] log_eco_agent ;
+processing.data.Table [] log_eco_agent ;
 TableRow [] tableRow_eco_agent ;
 // log Eco resume
-Table log_eco_resume ;
+processing.data.Table log_eco_resume ;
 TableRow [] tableRow_eco_resume ;
 
 // log Agent
-Table log_agents ;
+processing.data.Table log_agents ;
 TableRow [] tableRow_agents ;
 int col_num_agents = 10 ;
 
@@ -1180,29 +1180,29 @@ void set_frameRate_log(int tempo) {
 }
 
 
-void set_log_ecosystem(boolean b) { 
+void set_log_ecosystem(boolean b) {
   LOG_ECOSYSTEM = b ;
 }
-void set_log_agents(boolean b) { 
+void set_log_agents(boolean b) {
   LOG_ALL_AGENTS = b ;
 }
 
-void set_log_herbivore(boolean b) { 
+void set_log_herbivore(boolean b) {
   LOG_HERBIVORE = b ;
 }
-void set_log_omnivore(boolean b) { 
+void set_log_omnivore(boolean b) {
   LOG_OMNIVORE = b ;
 }
-void set_log_carnivore(boolean b) { 
+void set_log_carnivore(boolean b) {
   LOG_CARNIVORE = b ;
 }
-void set_log_bacterium(boolean b) { 
+void set_log_bacterium(boolean b) {
   LOG_BACTERIUM = b ;
 }
-void set_log_flora(boolean b) { 
+void set_log_flora(boolean b) {
   LOG_FLORA = b ;
 }
-void set_log_dead(boolean b) { 
+void set_log_dead(boolean b) {
   LOG_DEAD = b ;
 }
 
@@ -1233,9 +1233,9 @@ void build_log(int num_table_eco) {
   int rank = 0 ;
 
   // build log eco agent
-  log_eco_agent = new Table[num_table_eco] ;
+  log_eco_agent = new processing.data.Table[num_table_eco] ;
   for(int i = 0 ; i < log_eco_agent.length ; i++) {
-    log_eco_agent[i] = new Table() ;
+    log_eco_agent[i] = new processing.data.Table() ;
   }
   String [] col_name_eco_agent = new String[9] ;
   col_name_eco_agent[rank++] = "Time" ;
@@ -1254,30 +1254,30 @@ void build_log(int num_table_eco) {
 
 
   // build log Eco resume
-  log_eco_resume = new Table() ;
+  log_eco_resume = new processing.data.Table() ;
   String [] col_name_eco_resume = new String[6] ;
   rank = 0 ;
-  col_name_eco_resume[rank++] = "Time" ; 
-  col_name_eco_resume[rank++] = "Frame rate" ; 
+  col_name_eco_resume[rank++] = "Time" ;
+  col_name_eco_resume[rank++] = "Frame rate" ;
   col_name_eco_resume[rank++] = "Name" ;
   col_name_eco_resume[rank++] = "Units" ;
-  col_name_eco_resume[rank++] = "Quantity" ; 
-  col_name_eco_resume[rank++] = "Max" ; 
+  col_name_eco_resume[rank++] = "Quantity" ;
+  col_name_eco_resume[rank++] = "Max" ;
   buildTable(log_eco_resume, col_name_eco_resume) ;
-  
+
 
   // build log agent global
-  log_agents = new Table() ;
+  log_agents = new processing.data.Table() ;
   String [] col_name_agents = new String[13] ;
   rank = 0 ;
-  col_name_agents[rank++] = "Rank" ; 
-  col_name_agents[rank++] = "Agent" ; 
-  col_name_agents[rank++] = "Gen" ; 
+  col_name_agents[rank++] = "Rank" ;
+  col_name_agents[rank++] = "Agent" ;
+  col_name_agents[rank++] = "Gen" ;
   col_name_agents[rank++] = "Gender" ;
-  col_name_agents[rank++] = "Pregnancy" ;  
-  col_name_agents[rank++] = "Children" ; 
-  col_name_agents[rank++] = "Heterozygous" ; 
-  col_name_agents[rank++] = "Homozygous" ; 
+  col_name_agents[rank++] = "Pregnancy" ;
+  col_name_agents[rank++] = "Children" ;
+  col_name_agents[rank++] = "Heterozygous" ;
+  col_name_agents[rank++] = "Homozygous" ;
   col_name_agents[rank++] = "Size" ;
   col_name_agents[rank++] = "Life" ;
   col_name_agents[rank++] = "Stamina" ;
@@ -1327,7 +1327,7 @@ void log_save() {
 
 
 // local
-void add_log_eco_resume(Table table, float humus, float humus_max, ArrayList... pop_list) {
+void add_log_eco_resume(processing.data.Table table, float humus, float humus_max, ArrayList... pop_list) {
   int num_group = 0 ;
   // humus
   TableRow new_row = table.addRow() ;
@@ -1372,7 +1372,7 @@ void add_log_eco_resume(Table table, float humus, float humus_max, ArrayList... 
 
 
 // agent global
-void add_log_agent_global(Table table, String name, ArrayList... pop_list) {
+void add_log_agent_global(processing.data.Table table, String name, ArrayList... pop_list) {
   int pop_total = 0 ;
   int rank = 0 ;
   for(int i = 0 ; i < pop_list.length ; i++) {
@@ -1404,7 +1404,7 @@ void add_log_agent_global(Table table, String name, ArrayList... pop_list) {
   }
 }
 // log eco agent
-void add_log_eco_agent(Table table, String name, ArrayList... pop_list) {
+void add_log_eco_agent(processing.data.Table table, String name, ArrayList... pop_list) {
   // pop
   int pop_total = 0 ;
   int stamina_total = 0 ;
@@ -1445,7 +1445,7 @@ void add_log_eco_agent(Table table, String name, ArrayList... pop_list) {
       new_row.setInt("Female", pop_list[1].size()) ;
       new_row.setInt("Male", pop_list[2].size()) ;
       new_row.setInt("Population", pop_total) ;
-    }      
+    }
   }
 }
 
@@ -1618,7 +1618,7 @@ void info_agent(ArrayList list) {
       Dead d = (Dead) o ;
       d.info(d.get_fill_style(), SIZE_TEXT_INFO) ;
 
-    } 
+    }
   }
 }
 
@@ -1766,12 +1766,3 @@ void update_log(ArrayList<Agent> list, int tempo) {
     }
   }
 }
-
-
-
-
-
-
-
-
-

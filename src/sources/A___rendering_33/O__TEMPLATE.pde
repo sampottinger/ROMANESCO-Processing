@@ -118,18 +118,3 @@ class Template extends Romanesco {
     // here if you want code in 2D mode
   }   
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

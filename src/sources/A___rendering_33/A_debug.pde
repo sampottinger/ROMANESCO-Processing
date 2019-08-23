@@ -33,7 +33,3 @@ void test_set_pix_density() {
     set(x,y,c);
   }
 }
-
-
-
-

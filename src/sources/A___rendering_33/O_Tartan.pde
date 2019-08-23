@@ -123,18 +123,3 @@ class Tartan extends Romanesco {
 
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

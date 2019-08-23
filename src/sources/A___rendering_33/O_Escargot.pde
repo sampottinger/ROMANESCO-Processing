@@ -1822,9 +1822,3 @@ int timer(float tempo) {
   chronometer = newChronometer ;
   return chrnmtr ;
 }
-
-
-
-
-
-

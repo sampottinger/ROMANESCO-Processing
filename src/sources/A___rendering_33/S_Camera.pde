@@ -1287,11 +1287,3 @@ vec3 direction_canvas_to_polar(vec3 direction_canvas) {
   vec3 eyeP3D = vec3(temp_dir_x,temp_dir_y,0);
   return eyeP3D;
 }
-
-
-
-
-
-
-
-

@@ -254,7 +254,7 @@ PGraphics generate_fx_filter_pattern(int mode, int sx, int sw) {
 
 
 void write_fx_filter_index() {
-  Table index_fx = new Table();
+  processing.data.Table index_fx = new processing.data.Table();
   index_fx.addColumn("Name");
   index_fx.addColumn("Author");
   index_fx.addColumn("Version");
@@ -950,59 +950,3 @@ void warp_force_keyPressed(char c_1) {
     warp_force_reset = true;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

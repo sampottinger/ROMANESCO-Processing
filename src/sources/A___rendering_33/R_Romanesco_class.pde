@@ -2414,15 +2414,3 @@ vec3 get_item_dir() {
     return costume;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-

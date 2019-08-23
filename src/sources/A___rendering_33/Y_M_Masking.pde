@@ -291,10 +291,3 @@ public class Masking implements rope.core.R_Constants, rope.core.R_Constants_Col
     pg.endDraw();
   }
 }
-
-
-
-
-
-
-

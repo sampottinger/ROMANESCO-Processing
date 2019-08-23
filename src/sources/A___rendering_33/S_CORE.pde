@@ -73,7 +73,7 @@ void load_autosave() {
 }
 
 void load_save(String path) {
-  Table save = loadTable(path, "header");
+  processing.data.Table save = loadTable(path, "header");
   for (TableRow row : save.rows()) {
     String s = row.getString("Type");
     if(s.equals("Media")){
@@ -96,7 +96,7 @@ v 0.0.5
 */
 void load_dial_controller() {
   if(frameCount%240 == 0) {
-    Table dial_table = loadTable(preference_path +"dialogue_from_controller.csv","header");
+    processing.data.Table dial_table = loadTable(preference_path +"dialogue_from_controller.csv","header");
     TableRow row = dial_table.getRow(0);
     float temp_reactivity = row.getFloat("mouse reactivity");
     mouse_reactivity = temp_reactivity *temp_reactivity;
@@ -410,15 +410,3 @@ class Mode {
     this.name = name;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-

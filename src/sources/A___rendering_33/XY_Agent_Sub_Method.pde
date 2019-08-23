@@ -964,7 +964,3 @@ void carrion_update(ArrayList<Dead> list) {
 DEAD METHOD END
 
 */
-
-
-
-

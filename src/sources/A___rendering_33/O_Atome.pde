@@ -1462,17 +1462,3 @@ String whichSentence(String txt, int whichChapter, int whichSentence) {
   
   return repartition[whichChapter][whichSentence] ;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

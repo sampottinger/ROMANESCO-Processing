@@ -378,27 +378,3 @@ boolean reset(Romanesco item) {
   else if (key_delete) if (item.action_is() || item.parameter_is()) state = true ;
   return state;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

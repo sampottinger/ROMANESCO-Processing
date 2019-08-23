@@ -1844,7 +1844,7 @@ DNA 0.1.2
 
 */
 
-Table CODE_DNA_REF  ;
+processing.data.Table CODE_DNA_REF  ;
 char [] nucleotide_char ;
 void load_nucleotide_table(String path) {
   CODE_DNA_REF = loadTable(path, "header") ;
@@ -2027,11 +2027,3 @@ class Masked extends Nucleotide {
     this.nac = 'X' ;
   }
 }
-
-
-
-
-
-
-
-

@@ -74,7 +74,7 @@ void init_value_temp_prescene() {
 * MANAGE DIALOGUE SCENE
 */
 void save_dial_scene(String path) {
-  Table save_dial = new Table();
+  processing.data.Table save_dial = new processing.data.Table();
   save_dial.addColumn("fx active");
   save_dial.addColumn("fx slider active");
   TableRow table_row = save_dial.addRow();
@@ -100,7 +100,3 @@ void save_dial_scene(String path) {
   table_row.setString("fx slider active",list_slider);
   saveTable(save_dial,path+"/dialogue_from_scene.csv");
 }
-
-
-
-

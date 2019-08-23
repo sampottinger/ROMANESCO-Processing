@@ -304,9 +304,3 @@ class Letter extends Romanesco {
     return pts ;
   }
 }
-
-
-
-
-
-

@@ -241,7 +241,7 @@ void display_setup(int frame_rate, int num_layer) {
 
 
 void set_screen() {
-  Table configurationScene = loadTable(preference_path +"sceneProperty.csv","header");
+  processing.data.Table configurationScene = loadTable(preference_path +"sceneProperty.csv","header");
   TableRow row = configurationScene.getRow(0);
   ivec2 window = ivec2(width,height);
   int target_screen = row.getInt("whichScreen");
@@ -605,15 +605,3 @@ void repere(int size) {
   line(0,-size,0,0,size,0) ;
   line(0,0,-size,0,0,size) ;
 }
-
-
-
-
-
-
-
-
-
-
-
-

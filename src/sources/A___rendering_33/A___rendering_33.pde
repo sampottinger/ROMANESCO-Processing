@@ -472,6 +472,3 @@ void mouseWheel(MouseEvent e) {
     wheel[0] = e.getCount() *speedWheel;
   } 
 }
-
-
-

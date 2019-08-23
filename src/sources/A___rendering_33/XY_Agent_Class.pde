@@ -2015,7 +2015,7 @@ COMMON HUNT & SEARCH
   LOG 0.1.1
 
   */
-  Table log_a_d ;
+  processing.data.Table log_a_d ;
   TableRow [] tableRow_a_d ;
   Info_Object [] info_a_d  ;
   int col_num = 4 ;
@@ -2029,7 +2029,7 @@ COMMON HUNT & SEARCH
   // build
   void build_log() {
     log_is = true ;
-    log_a_d = new Table();
+    log_a_d = new processing.data.Table();
     tableRow_a_d = new TableRow[row_num] ;
     info_a_d = new Info_Object [row_num] ;
     for (int i = 0 ; i < row_num ; i++) {

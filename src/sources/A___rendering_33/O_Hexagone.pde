@@ -283,12 +283,3 @@ class Honeycomb extends Romanesco {
   }
 }
 //end object two
-
-
-
-
-
-
-
-
-

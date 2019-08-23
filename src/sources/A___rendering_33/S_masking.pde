@@ -518,7 +518,7 @@ void load_save_mask(File selection) {
   if (selection == null) {
     println("No file has been selected for data mask");
   } else {
-    Table t = loadTable(selection.getAbsolutePath(),"header");
+    processing.data.Table t = loadTable(selection.getAbsolutePath(),"header");
     set_file_masking(t);
     // mask border part
     if(get_file_masking().getRowCount() > 7) {
@@ -640,23 +640,23 @@ void selected_file_to_save(File selection) {
 }
 
 // mask file
-Table file_msk;
-Table get_file_masking() {
+processing.data.Table file_msk;
+processing.data.Table get_file_masking() {
   return file_msk;
 }
 
-void set_file_masking(Table t) {
+void set_file_masking(processing.data.Table t) {
   file_msk = t ;
 }
 
-void save_file_masking(Table s_msk, String path) {
+void save_file_masking(processing.data.Table s_msk, String path) {
   if(s_msk != null) {
     saveTable(s_msk, path);
   }
 } 
 
 void write_file_masking() {
-  file_msk = new Table();
+  file_msk = new processing.data.Table();
   file_msk.addColumn("name");
   file_msk.addColumn("num");
   file_msk.addColumn("is");

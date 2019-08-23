@@ -449,14 +449,3 @@ void center_sketch(ivec2 loc) {
   int term_y_1 = height/2;
   loc.y = term_y_0 - term_y_1;
 }
-
-
-
-
-
-
-
-
-
-
-

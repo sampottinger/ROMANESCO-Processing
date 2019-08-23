@@ -329,15 +329,3 @@ class Puppet_master extends Romanesco {
     } else return true;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-

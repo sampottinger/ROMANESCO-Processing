@@ -364,6 +364,3 @@ void key_false() {
   if (key_left) key_left = false;
   if (key_right) key_right = false;
 }
-
-
-

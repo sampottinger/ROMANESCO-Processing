@@ -234,7 +234,3 @@ class Kofosphere extends Romanesco {
     }
   }
 }
-
-
-
-
